@@ -42,4 +42,8 @@ export const testDB = (db) => {
     await db.edit(tbl, { id: "1" }, { b: "9" });
     t.assertEquals(await db.list(tbl), [{ id: "1", a: "abc", b: "9" }, { id: "2", a: "def", b: "2" }]);
   });
+  Deno.test("listTable", async () => {
+    const tbl = "tbl2";
+    t.assertEquals(await db.listTable(), ["tbl2", "testtable"]);
+  });
 };

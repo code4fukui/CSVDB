@@ -51,7 +51,7 @@ class MemDB {
     return true;
   }
   async listTable() {
-    return Object.keys(this.db);
+    return Object.keys(this.db).sort();
   }
   async getTableSchema(tbl) {
     throw new Error("not supported");

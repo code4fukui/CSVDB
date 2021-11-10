@@ -1,5 +1,6 @@
 import { CSV } from "https://js.sabae.cc/CSV.js";
 import { MemDB } from "./MemDB.js";
+import { dir2array } from "https://js.sabae.cc/dir2array.js";
 
 class CSVDB {
   constructor() {
@@ -70,6 +71,10 @@ class CSVDB {
   }
   async createTable(tbl) {
     return true;
+  }
+  async listTable() {
+    const list = await dir2array(this.path);
+    return list.filter(f => f.endsWith(".csv")).map(f => f.substring(0, f.length - 4)).sort();
   }
 };
 
