@@ -25,6 +25,14 @@ export const testDB = (db) => {
     await db.edit(tbl, { a: "a" }, { b: "123" });
     t.assertEquals(await db.list(tbl), [{ a: "a", b: "123" }, { a: "b", b: "34" }]);
   });
+  Deno.test("edit", async () => {
+    await db.edit(tbl, { a: "b" }, { b: "3333" });
+    t.assertEquals(await db.list(tbl), [{ a: "a", b: "123" }, { a: "b", b: "3333" }]);
+  });
+  Deno.test("edit", async () => {
+    await db.edit(tbl, { a: "b", b: "3333" }, { b: "9999" });
+    t.assertEquals(await db.list(tbl), [{ a: "a", b: "123" }, { a: "b", b: "9999" }]);
+  });
   Deno.test("del", async () => {
     await db.del(tbl, { a: "b" });
     t.assertEquals(await db.list(tbl), [{ a: "a", b: "123" }]);
